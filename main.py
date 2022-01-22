@@ -11,7 +11,6 @@ def hello_world():
 @app.route("/dank")
 def dank_memes():
     return "<p>Dank Memes!</p>"
-
 @app.route("/api/allowance_predict/<history>")
 def predict_allowance(history):
     # e.g /api/allowance_predict/1,2,3,4,5,6,7
