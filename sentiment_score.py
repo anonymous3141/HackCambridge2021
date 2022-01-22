@@ -3,7 +3,7 @@ import random
 from googlesearch import search
 
 def evaluate_sentiment(entry):
-    openai.api_key = "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"
+    openai.api_key = "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"
     base = """
     Sentiment classification:\n
     Climate change: Proposal to spend 25% of EU budget on climate change: positive\n
@@ -59,12 +59,12 @@ def unit_test_scrape():
     print(sample())
     #print(clean_reuters_url("https://www.reuters.com/world/americas/something-has-changed-young-female-led-cabinet-reflects-chiles-modern-twist-2022-01-21/"))
 
-def get_sentiment_score():
+def get_sentiment_score(debug=False):
     sum_score = 0
     news_list = sample()
     for news in news_list:
         res = evaluate_sentiment(news)
         sum_score += res
-        print(news, res)
-    print(sum_score)
-    return res
+        if debug: print(news, res)
+    if debug: print(sum_score)
+    return sum_score
