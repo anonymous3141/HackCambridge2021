@@ -6,7 +6,7 @@ from googlesearch import search
 API_KEY = os.getenv('OPENAI_KEY')
 
 def evaluate_sentiment(entry):
-    openai.api_key = "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"
+    openai.api_key = API_KEY
     # "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"
     base = """
     Sentiment classification:\n
