@@ -5,7 +5,7 @@ from selenium import webdriver
 import pandas
 import numpy as np
 
-DOWNLOADED_FILES_DESTINATION = os.getcwd()
+DOWNLOADED_FILES_DESTINATION = os.getcwd() + '/data'
 ALLOWANCE_DATA_PATH = DOWNLOADED_FILES_DESTINATION + "/EMBER_Coal2Clean_EUETSPrices.csv"
 
 allowance_data_past_week = None
@@ -47,18 +47,18 @@ def download_file():
 def update_allowance_data():
     print("Loading allowance data...")
     global allowance_data_past_week
-    svg_data = np.array(pandas.read_csv(ALLOWANCE_DATA_PATH))
-    new_allowance_data_past_week = [price for _, price in svg_data[-7:]]
-    allowance_data_past_week = new_allowance_data_past_week
+    svg_data = pandas.read_csv(ALLOWANCE_DATA_PATH)['Price'].to_numpy()
+    allowance_data_past_week = svg_data
     print("Load successful!")
 
 def update_allowance_data_regularly():
     while True:
         sleep(DATA_UPDATE_INTERVAL)
+        download_file()
         update_allowance_data()  # TODO: Fix a mutex.
 
 
-def start_allwance_data_updater():
+def start_allowance_data_updater():
     threading.Thread(target=update_allowance_data_regularly)
 
 if __name__ == "__main__":
