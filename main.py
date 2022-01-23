@@ -39,14 +39,12 @@ def get_data(as_string=True):
 def get_predicted_data():
     # temporary stopgap
     result = predict_n_days_forward(7)
-    print(array_to_json(result))
     return array_to_json(result)
 
 @app.route("/api/get_historical_data")
 def get_historical_data():
     # temporary stopgap
     result = refresh_allowance_data.allowance_data_past_week[-HISTORY_LENGTH:]
-    print(array_to_json(result))
     return array_to_json(result)
 
 @app.route("/api/allowance_predict/<history>")
@@ -59,8 +57,8 @@ def predict_allowance(history):
 
 @app.route("/api/electricity_predict/<data>")
 def predict_electricity(data):
-    # input: average temp, min temp, max temp, humidity, forecasted rain
-    # (cont) forecasted snow, day,month (int),year
+    # input: average temp, min temp, max temp(in K), humidity(%), forecasted rain(mm)
+    # (cont) forecasted snow(mm), day, month, year(int)
     # i.e 9 comma seperated values
     # temp temp_min temp_max humidity rain_1h snow_3h month weekday (2015/1/1 = 0)
     cleaned = [float(c) for c in data.split(',')]
@@ -88,8 +86,7 @@ def predict_electricity(data):
 @app.route("/api/get_sentiment")
 def get_sentiment():
     # e.g /api/get_sentiment
-    return 69
-    # return get_sentiment_score()
+    return get_sentiment_score()
 
 
 @app.route('/test', methods=['GET', 'POST'])

@@ -32,7 +32,7 @@ def generate_chrome_settings(headless):
 
 def download_file():
     print("Downloading allowance data...")
-    driver = webdriver.Chrome(options=generate_chrome_settings(HEADLESS))
+    driver = webdriver.Chrome('./chromedriver', options=generate_chrome_settings(HEADLESS))
     url = "https://QU6FEUWMSKTSIJSJ.anvil.app/FUIY7TKGIS7A33N4XOCB7YM2"
     driver.get(url)
 

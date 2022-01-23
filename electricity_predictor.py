@@ -1,7 +1,7 @@
 import pickle
 
 def elec_predict(weather_and_date_data):
-    # input 1d array
+    # Pandas dataframe input
     model = pickle.load(open("electricity_model.pickle","rb"))
     return model.predict(weather_and_date_data)[0]
 

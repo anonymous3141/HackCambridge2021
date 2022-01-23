@@ -262,14 +262,14 @@
 })(jQuery);
 
 function refresh_sentiment() {
-    fetch('/test')
-        .then((response) => {
-            return response.json();
-        }).then((text) => {
-            console.log('Sentiment response: ' + text.response);
-            document.getElementById('sentiment').innerHTML =
-                'Sentiment score: ' + (text.response);
-        });
+	fetch('/test')
+		.then((response) => {
+			return response.json();
+		}).then((text) => {
+			console.log('Sentiment response: ' + text.response);
+			document.getElementById('sentiment').innerHTML =
+				'Sentiment score: ' + (text.response);
+		});
 }
 
 function DtoS(datetime, with_year=false) {
@@ -289,7 +289,7 @@ function dateAfterNDays(n) {
 function updatePredictionChart() {
 	const today = new Date();
 
-    fetch('/api/get_predicted_data') .then((response) => {
+	fetch('/api/get_predicted_data') .then((response) => {
 		return response.json();
 	}).then((text) => {
 		console.log('Prediction response:');
@@ -372,8 +372,12 @@ function refresh() {
 	updateHistoricalChart();
 }
 
+
 window.onload = function() {
 	refresh();
+	// document.find_element_by_id('refresh').on('click', (e) => {
+	// 	refresh();
+	// });
 }
 
 // Render Method[3]
