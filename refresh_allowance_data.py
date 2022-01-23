@@ -8,9 +8,14 @@ import numpy as np
 DOWNLOADED_FILES_DESTINATION = os.getcwd() + '/data'
 ALLOWANCE_DATA_PATH = DOWNLOADED_FILES_DESTINATION + "/EMBER_Coal2Clean_EUETSPrices.csv"
 
-allowance_data_past_week = np.array([0, 0, 0, 0, 0, 0, 0])
+# HISTORY_LENGTH = 31 * 3
+HISTORY_LENGTH = 100 * 3
+
+allowance_data_past_week = np.full(HISTORY_LENGTH, 1)
+allowance_condition = threading.Condition()
 
 DATA_UPDATE_INTERVAL = 60 * 60 # Seconds
+
 
 HEADLESS = True
 
@@ -47,9 +52,13 @@ def download_file():
 
 def update_allowance_data():
     print("Loading allowance data...")
+    svg_data = pandas.read_csv(ALLOWANCE_DATA_PATH)['Price'].to_numpy()[-HISTORY_LENGTH:]
+
+    allowance_condition.acquire()
     global allowance_data_past_week
-    svg_data = pandas.read_csv(ALLOWANCE_DATA_PATH)['Price'].to_numpy()
     allowance_data_past_week = svg_data
+    allowance_condition.release()
+
     print("Load successful!")
 
 def update_allowance_data_regularly():
@@ -60,7 +69,8 @@ def update_allowance_data_regularly():
 
 
 def start_allowance_data_updater():
-    threading.Thread(target=update_allowance_data_regularly)
+    th = threading.Thread(target=update_allowance_data_regularly)
+    th.start()
 
 if __name__ == "__main__":
     download_file()
