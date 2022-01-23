@@ -21,6 +21,10 @@ def dank_memes():
     return "<p>Dank Memes!</p>"
 
 
+######################################################
+# API ################################################
+######################################################
+
 @app.route("/api/get_data")
 def get_data(as_string=True):
     # temporary stopgap

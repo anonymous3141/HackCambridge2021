@@ -33,14 +33,18 @@ def download_file():
 
     eu_button = None
 
+    sleep(10)
+
     while eu_button is None:
         results = driver.find_elements('class name', 'button-text')
         if len(results) > 0:
             eu_button = results[0]
             break
+        print("No button found!")
+
 
     eu_button.click()
-    sleep(5)
+    sleep(10)
     driver.close()
     print("Download successful!")
 
