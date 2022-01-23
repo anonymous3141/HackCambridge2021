@@ -61,7 +61,11 @@ def predict_electricity(data):
     # (cont) forecasted snow(mm), day, month, year(int)
     # i.e 9 comma seperated values
     # temp temp_min temp_max humidity rain_1h snow_3h month weekday (2015/1/1 = 0)
+    # Outouts power in MW
     cleaned = [float(c) for c in data.split(',')]
+    cleaned[0] -= 273.14
+    cleaned[1] -= 273.14
+    cleaned[2] -= 273.14
     
     # convert to data format fed into xgboost
     cleaned[4]/=24

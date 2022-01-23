@@ -380,4 +380,18 @@ window.onload = function() {
 	// });
 }
 
+function submitForm() {
+
+	let array = $('#weatherform').serializeArray().map(x => x.value)
+	let url = '/api/electricity_predict/' + array
+
+	fetch(url).then((response) => {
+		return response.json();
+	}).then((text) => {
+		let final_text = 'Predicted Electricity Consumption: ' + text + " MW"
+		console.log(final_text)
+		document.getElementById('predictedElectricityConsumption').innerHTML = final_text
+	})
+}
+
 // Render Method[3]
