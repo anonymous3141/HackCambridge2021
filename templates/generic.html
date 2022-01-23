@@ -4,6 +4,8 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="static/main.css"/>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="https://cdn.zingchart.com/modules/"></script>
 </head>
 <body class="is-preload">
 
@@ -18,7 +20,7 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo"><strong>Sentiment predictor</strong> by 3T1K</a>
+                <a href="index.html" class="logo"><strong>News Sentiment Predictor</strong> by 3T1K</a>
             </header>
 
             <!-- Content -->
@@ -74,15 +76,17 @@
 
                 <!--<span class="image main"><img src="static/images/pic11.jpg" alt=""/></span>-->
 
-
-                <p>The sentiment score represents the answer to the life universe and everything.
+                <p style="margin-top: 7%">The sentiment score represents the answer to the life universe and everything.
                     It uses cutting edge AI power of OpenAI's GPT-3 for finding out whether the specific renewable
                     resources will increase of decrease on the following day. After which it predicts the expected need
                     for power during that day by using a well-trained tensorflow model.
                     See?
-                    It really includes everything, it's literally the most comlpicated single number I've ever seen.
+                    It really includes everything, it's literally the most complicated single number I've ever seen.
                     Just take a moment and appreciate this before pressing the refresh button again and again to get an
                     advantage in the power industry.</p>
+
+                <div id="predictionChart"></div>
+                <div id="historicalChart"></div>
 
             </section>
 
