@@ -32,6 +32,7 @@ def download_file():
     driver.get(url)
 
     eu_button = None
+    sleep(10)
 
     while eu_button is None:
         results = driver.find_elements('class name', 'button-text')
@@ -40,7 +41,7 @@ def download_file():
             break
 
     eu_button.click()
-    sleep(5)
+    sleep(10)
     driver.close()
     print("Download successful!")
 
