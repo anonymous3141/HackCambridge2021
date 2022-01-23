@@ -1,10 +1,12 @@
+import os
 import openai
 import random
 from googlesearch import search
 
+API_KEY = os.getenv('OPENAI_KEY')
 
 def evaluate_sentiment(entry):
-    openai.api_key = "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"
+    openai.api_key = "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"
     # "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"
     base = """
     Sentiment classification:\n

@@ -9,8 +9,6 @@ import pandas as pd
 
 app = Flask(__name__)
 
-download_file()
-update_allowance_data()
 start_allowance_data_updater()
 
 @app.route("/")

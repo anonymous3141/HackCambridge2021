@@ -261,3 +261,20 @@
 
 })(jQuery);
 
+function refreshing() {
+    fetch('/test')
+        .then((response) => {
+            return response.json();
+        }).then((text) => {
+            console.log('GET response:');
+            console.log(text);
+            document.getElementById('sentiment').innerHTML =
+                'Sentiment score: ' + (text.response);
+        });
+}
+
+console.log("What is this?")
+
+window.onload = function() {
+	refreshing()
+}

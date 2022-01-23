@@ -8,7 +8,7 @@ import numpy as np
 DOWNLOADED_FILES_DESTINATION = os.getcwd() + '/data'
 ALLOWANCE_DATA_PATH = DOWNLOADED_FILES_DESTINATION + "/EMBER_Coal2Clean_EUETSPrices.csv"
 
-allowance_data_past_week = None
+allowance_data_past_week = np.array([0, 0, 0, 0, 0, 0, 0])
 
 DATA_UPDATE_INTERVAL = 60 * 60 # Seconds
 
@@ -54,9 +54,9 @@ def update_allowance_data():
 
 def update_allowance_data_regularly():
     while True:
-        sleep(DATA_UPDATE_INTERVAL)
         download_file()
         update_allowance_data()  # TODO: Fix a mutex.
+        sleep(DATA_UPDATE_INTERVAL)
 
 
 def start_allowance_data_updater():

@@ -8,19 +8,6 @@
 <body class="is-preload">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-    function refreshing() {
-        fetch('/test')
-            .then(function (response) {
-                return response.json();
-            }).then(function (text) {
-            console.log('GET response:');
-            console.log(text);
-            document.getElementById('sentiment').innerHTML =
-                'Sentiment score: ' + (text.response);
-        });
-    }
-</script>
 
 <!-- Wrapper -->
 <div id="wrapper">
